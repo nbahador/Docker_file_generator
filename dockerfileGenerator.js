@@ -19,7 +19,7 @@ async function fetchDockerImageDetails(imageKeyword) {
     }
 }
 
-async function generateDockerfile() {
+document.getElementById('generateButton').addEventListener('click', async () => {
     const imageKeyword = document.getElementById("imageKeyword").value; // Get the input value
     
     if (!imageKeyword) {
@@ -45,12 +45,9 @@ RUN chmod -R 775 /opt/fwdti
 ENTRYPOINT ["/opt/fwdti/fit_fw_scilpy.sh"]
         `;
         
-        console.log("Generated Dockerfile:", dockerfileContent);
-        
         // Output the Dockerfile content to an element in the HTML
         document.getElementById('dockerfileOutput').textContent = dockerfileContent;
     } else {
-        console.log('Failed to fetch image details.');
         document.getElementById('dockerfileOutput').textContent = 'Error: Unable to fetch image details.';
     }
-}
+});
