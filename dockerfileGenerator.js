@@ -1,5 +1,3 @@
-// dockerfileGenerator.js
-
 document.getElementById('generateButton').addEventListener('click', () => {
     const imageName = document.getElementById("imageName").value; // Get the Docker image name
     const imageTag = document.getElementById("imageTag").value; // Get the Docker image tag
@@ -10,7 +8,7 @@ document.getElementById('generateButton').addEventListener('click', () => {
         return;
     }
 
-    // Generate the Dockerfile content
+    // Generate the Dockerfile content, ensuring the format is FROM ${imageName}/${imageName}:${imageTag}
     const dockerfileContent = `
 FROM ${imageName}/${imageName}:${imageTag}
 
@@ -24,5 +22,5 @@ ENTRYPOINT ["/opt/fwdti/fit_fw_scilpy.sh"]
     `;
 
     // Output the Dockerfile content to the page
-    document.getElementById('dockerfileOutput').textContent = dockerfileContent;
+    document.getElementById('dockerfileOutput').textContent = dockerfileContent.trim();
 });
