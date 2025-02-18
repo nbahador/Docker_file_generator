@@ -20,7 +20,12 @@ async function fetchDockerImageDetails(imageKeyword) {
 }
 
 async function generateDockerfile() {
-    const imageKeyword = prompt("Enter the Docker image keyword (e.g., scilus):");
+    const imageKeyword = document.getElementById("imageKeyword").value; // Get the input value
+    
+    if (!imageKeyword) {
+        document.getElementById('dockerfileOutput').textContent = 'Please enter a Docker image keyword.';
+        return;
+    }
     
     const imageDetails = await fetchDockerImageDetails(imageKeyword);
     
@@ -40,4 +45,12 @@ RUN chmod -R 775 /opt/fwdti
 ENTRYPOINT ["/opt/fwdti/fit_fw_scilpy.sh"]
         `;
         
-        console.log("Generated
+        console.log("Generated Dockerfile:", dockerfileContent);
+        
+        // Output the Dockerfile content to an element in the HTML
+        document.getElementById('dockerfileOutput').textContent = dockerfileContent;
+    } else {
+        console.log('Failed to fetch image details.');
+        document.getElementById('dockerfileOutput').textContent = 'Error: Unable to fetch image details.';
+    }
+}
