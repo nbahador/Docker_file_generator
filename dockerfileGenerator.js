@@ -4,21 +4,33 @@ async function fetchDockerImageDetails(imageKeyword) {
     const url = `https://hub.docker.com/v2/repositories/library/${imageKeyword}/tags/`;
     
     try {
+        // Add a debug message before making the request
+        document.getElementById('debugOutput').textContent = `Fetching data for: ${imageKeyword}`;
+
         const response = await fetch(url);
+        
+        // Check if the response is valid
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const data = await response.json();
+        console.log('Fetched data from Docker Hub:', data); // Debug log for fetched data
 
         if (data.results && data.results.length > 0) {
-            const latestTag = data.results[0].name;  // Get the latest tag (you can modify logic if needed)
+            const latestTag = data.results[0].name;  // Get the latest tag
             return { imageName: imageKeyword, tag: latestTag };
         } else {
             throw new Error('No tags found for the given image keyword.');
         }
     } catch (error) {
         console.error('Error fetching Docker image details:', error);
+        document.getElementById('debugOutput').textContent = `Error: ${error.message}`; // Display error in debug output
         return null;
     }
 }
 
+// Event listener for button click
 document.getElementById('generateButton').addEventListener('click', async () => {
     const imageKeyword = document.getElementById("imageKeyword").value; // Get the input value
     
@@ -26,7 +38,11 @@ document.getElementById('generateButton').addEventListener('click', async () => 
         document.getElementById('dockerfileOutput').textContent = 'Please enter a Docker image keyword.';
         return;
     }
-    
+
+    // Clear previous debug and output
+    document.getElementById('dockerfileOutput').textContent = '';
+    document.getElementById('debugOutput').textContent = 'Processing...';
+
     const imageDetails = await fetchDockerImageDetails(imageKeyword);
     
     if (imageDetails) {
