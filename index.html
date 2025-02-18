@@ -46,20 +46,20 @@
 </head>
 <body>
     <h1>Dockerfile Generator</h1>
-    <p>Enter a Docker image keyword (e.g., scilus) to fetch the latest tag and generate a Dockerfile.</p>
+    <p>Enter a Docker image name and tag to generate a Dockerfile.</p>
     
-    <!-- Input field to enter Docker image keyword -->
-    <input type="text" id="imageKeyword" placeholder="Enter image keyword" />
+    <!-- Input field to enter Docker image name -->
+    <input type="text" id="imageName" placeholder="Enter Docker image name" />
+    
+    <!-- Input field to enter Docker image tag -->
+    <input type="text" id="imageTag" placeholder="Enter Docker image tag" />
     
     <!-- Button to trigger Dockerfile generation -->
     <button id="generateButton">Generate Dockerfile</button>
     
     <div class="output" id="dockerfileOutput">
-        Enter a keyword and click "Generate Dockerfile" to see the output.
+        Enter a Docker image name and tag, then click "Generate Dockerfile" to see the output.
     </div>
-
-    <!-- Add debugging message area -->
-    <div id="debugOutput" style="margin-top: 20px;"></div>
     
     <script src="dockerfileGenerator.js"></script>
 </body>
