@@ -12,7 +12,7 @@ document.getElementById('generateButton').addEventListener('click', () => {
 
     // Generate the Dockerfile content
     const dockerfileContent = `
-FROM ${imageName}:${imageTag}
+FROM ${imageName}/${imageName}:${imageTag}
 
 # install the code
 RUN mkdir -p /opt/fwdti
