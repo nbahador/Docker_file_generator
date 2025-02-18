@@ -30,14 +30,32 @@
             word-wrap: break-word;
             font-family: "Courier New", monospace;
         }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <h1>Dockerfile Generator</h1>
     <p>Enter a Docker image keyword (e.g., scilus) to fetch the latest tag and generate a Dockerfile.</p>
     
+    <!-- Input field to enter Docker image keyword -->
+    <input type="text" id="imageKeyword" placeholder="Enter image keyword" />
+    
+    <!-- Button to trigger Dockerfile generation -->
+    <button onclick="generateDockerfile()">Generate Dockerfile</button>
+    
     <div class="output" id="dockerfileOutput">
-        Loading Dockerfile content...
+        Enter a keyword and click "Generate Dockerfile" to see the output.
     </div>
     
     <script src="dockerfileGenerator.js"></script>
