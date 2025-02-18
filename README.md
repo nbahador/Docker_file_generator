@@ -6,4 +6,4 @@ You can access the live Dockerfile Generator by clicking the link below:
 
 Here is an example of how it looks:
 
-![Dockerfile Generator Example](Docker_file_generator/assets/docker_file_example.png)
+![Dockerfile Generator Example](/assets/docker_file_example.png)
